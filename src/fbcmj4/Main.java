@@ -34,6 +34,9 @@ public class Main {
 			case "3":
 				fb.verNewsFeed();
 				break;
+			case "4":
+				fb.verWall();
+				break;
 			case "7":
 				next = false;
 				break;

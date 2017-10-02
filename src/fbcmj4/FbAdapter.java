@@ -21,16 +21,16 @@ public class FbAdapter {
 		super();
 		this.appId = SettingsManager.getAppId();
 		this.appSecret = SettingsManager.getAppSecret();
-		this.userToken = SettingsManager.getAccessToken();
+		this.userToken = fbcmj4.SettingsManager.getAccessToken();
 		
 		try {
 			conn = new FacebookFactory().getInstance();
 			conn.setOAuthAppId(appId, appSecret);
-			conn.setOAuthPermissions(SettingsManager.getPermissions());
+			conn.setOAuthPermissions(fbcmj4.SettingsManager.getPermissions());
 			conn.setOAuthAccessToken(new AccessToken(userToken));
 		} catch(Exception e) {
 			log.error("Error de conectividad con facebook");
-			throw new GenericError("Error de conectividad con facebook");
+			throw new fbcmj4.GenericError("Error de conectividad con facebook");
 		}
 	}
 	
@@ -80,6 +80,19 @@ public class FbAdapter {
 		try {
 			System.out.println("Mostrando newsfeed de " + conn.getMe().getName());
 			ResponseList<Post> p = conn.getFeed();
+			for(Post currentP : p) {
+				imprimirPost(currentP);
+			}
+		} catch (FacebookException e) {
+			log.error(e);
+			System.err.println("Error de conectividad");
+		}
+	}
+	
+	public void verWall() {
+		try {
+			System.out.println("Mostrando wall de " + conn.getMe().getName());
+			ResponseList<Post> p = conn.getPosts();
 			for(Post currentP : p) {
 				imprimirPost(currentP);
 			}
