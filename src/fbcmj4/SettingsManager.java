@@ -10,7 +10,7 @@ public class SettingsManager {
 	}
 	
 	public static String getAccessToken() {
-		return "EAAB4hGJUj5kBAOVk7eOKAWhDOBI9d6UmZC0EDbshpTPQu6kj3MzRE0vcEIimPviGa0QUfadpZAcSZA8WPrQS3p6HOJ8jSrHZAvtQimECitsWiyF4qbZBcxL6QRYQtkjAPTNIZCKxZA0NCAxpIz2I1pUe7CyosnRvHBnJtqEJpaFUwZDZD";
+		return "EAAB4hGJUj5kBAEFRwbVbsPdZBAqzrcLV1gYhlTcakXzVT4deAxTPbvvH3wJ1ZBFaCnXqz8qzj2x8WCmung2yIjvQHPd0qw972oE6wzrbV4vtZB3GvqILxeH56syoj4IW993lOP2fw4RwQB9vHD8F5V2tr1bKmYs0RZBCaxH9JgZDZD";
 	}
 	
 	public static String getPermissions() {
@@ -22,7 +22,8 @@ public class SettingsManager {
 	}
 	
 	public static String getUrlForToken() {
-		return "https://www.facebook.com/v2.10/dialog/oauth?client_id="+getAppId()+"&redirect_uri=https://www.facebook.com/connect/login_success.html";
+		//https://www.facebook.com/v2.10/dialog/oauth?client_id=132509980725145&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=public_profile,user_actions.news,user_posts,publish_actions
+		return "https://www.facebook.com/v2.10/dialog/oauth?client_id="+getAppId()+"&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=" + getPermissions();
 	}
 	
 	public static String LoginProccess(Scanner scan) {

@@ -4,7 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import facebook4j.Facebook;
+import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
+import facebook4j.Post;
+import facebook4j.ResponseList;
 import facebook4j.auth.AccessToken;
 
 public class FbAdapter {
@@ -50,5 +53,40 @@ public class FbAdapter {
 	
 	public void changeUser(String newToken) {
 		conn.setOAuthAccessToken(new AccessToken(userToken));
+	}
+	
+	private void imprimirPost(Post p) {
+		String name = p.getName();
+		String story = p.getStory();
+		String msg = p.getMessage();
+		if(name == null) {
+			name = "";
+		}
+		if(story == null) {
+			story = "";
+		}
+		if(msg == null) {
+			msg = "";
+		}
+		System.out.println("================================");
+		System.out.println("Nombre: " + name);
+		System.out.println("Historia: " + story);
+		System.out.println("Mensaje: " + msg);
+		System.out.println("================================");
+	}
+	
+	public void verNewsFeed() {
+		
+		try {
+			System.out.println("Mostrando newsfeed de " + conn.getMe().getName());
+			ResponseList<Post> p = conn.getFeed();
+			for(Post currentP : p) {
+				imprimirPost(currentP);
+			}
+		} catch (FacebookException e) {
+			log.error(e);
+			System.err.println("Error de conectividad");
+		}
+		
 	}
 }

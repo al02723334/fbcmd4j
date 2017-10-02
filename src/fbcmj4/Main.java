@@ -7,8 +7,6 @@ import facebook4j.FacebookException;
 
 public class Main {
 	public static void main(String[] args) throws FacebookException, IOException, GenericError {
-		System.out.println("Hola");
-
 		FbAdapter fb = new FbAdapter();
 		Scanner input = new Scanner(System.in);
 		boolean next = true;
@@ -29,6 +27,9 @@ public class Main {
 			case "1":
 				String newToken = SettingsManager.LoginProccess(input);
 				fb.changeUser(newToken);
+				break;
+			case "3":
+				fb.verNewsFeed();
 				break;
 			case "7":
 				next = false;
