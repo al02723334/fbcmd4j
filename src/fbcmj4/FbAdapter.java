@@ -47,4 +47,8 @@ public class FbAdapter {
 			throw new GenericError("Error de conectividad con facebook");
 		}
 	}
+	
+	public void changeUser(String newToken) {
+		conn.setOAuthAccessToken(new AccessToken(userToken));
+	}
 }
