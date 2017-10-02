@@ -1,11 +1,19 @@
 package fbcmj4;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Scanner;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import facebook4j.FacebookException;
 
 public class Main {
+	static final Logger log = LogManager.getLogger(Main.class);
+	
+	
 	public static void main(String[] args) throws FacebookException, IOException, GenericError {
 		FbAdapter fb = new FbAdapter();
 		Scanner input = new Scanner(System.in);
@@ -41,6 +49,19 @@ public class Main {
 				System.out.println("Nuevo estado:");
 				String mensaje = input.nextLine();
 				fb.publicar(mensaje);
+				break;
+			case "6":
+				System.out.println("Nuevo estado:");
+				String urlString = input.nextLine();
+				try {
+					URL url = new URL(urlString);
+					fb.publicarLink(url);					
+				} catch(MalformedURLException e) {
+					log.error("La url introducida no es valida");
+				} catch(Exception e) {
+					log.error("Error de conectividad");
+				}
+				
 				break;
 			case "7":
 				next = false;

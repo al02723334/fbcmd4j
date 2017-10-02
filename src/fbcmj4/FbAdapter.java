@@ -1,5 +1,7 @@
 package fbcmj4;
 
+import java.net.URL;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -106,6 +108,16 @@ public class FbAdapter {
 	public void publicar(String mensaje) {
 		try {
 			conn.postStatusMessage(mensaje);
+			System.out.println("Se publico correctamente");
+		} catch (FacebookException e) {
+			log.error(e);
+			System.err.println("Error de conectividad");
+		}
+	}
+	
+	public void publicarLink(URL url) {
+		try {
+			conn.postLink(url);
 			System.out.println("Se publico correctamente");
 		} catch (FacebookException e) {
 			log.error(e);
