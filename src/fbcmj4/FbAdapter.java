@@ -34,10 +34,10 @@ public class FbAdapter {
 		}
 	}
 	
-	public FbAdapter(String appId, String appSecret, String userToken) throws GenericError {
+	public FbAdapter(String userToken) throws GenericError {
 		super();
-		this.appId = appId;
-		this.appSecret = appSecret;
+		this.appId = SettingsManager.getAppId();
+		this.appSecret = SettingsManager.getAppSecret();
 		this.userToken = userToken;
 		
 		try {
@@ -101,5 +101,15 @@ public class FbAdapter {
 			System.err.println("Error de conectividad");
 		}
 		
+	}
+	
+	public void publicar(String mensaje) {
+		try {
+			conn.postStatusMessage(mensaje);
+			System.out.println("Se publico correctamente");
+		} catch (FacebookException e) {
+			log.error(e);
+			System.err.println("Error de conectividad");
+		}
 	}
 }

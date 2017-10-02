@@ -26,7 +26,7 @@ public class Main {
 			switch (op) {
 			case "1":
 				String newToken = SettingsManager.LoginProccess(input);
-				fb.changeUser(newToken);
+				fb = new FbAdapter(newToken);
 				break;
 			case "2":
 				System.out.println("Hola " + fb.conn.getMe().getName());
@@ -36,6 +36,11 @@ public class Main {
 				break;
 			case "4":
 				fb.verWall();
+				break;
+			case "5":
+				System.out.println("Nuevo estado:");
+				String mensaje = input.nextLine();
+				fb.publicar(mensaje);
 				break;
 			case "7":
 				next = false;
