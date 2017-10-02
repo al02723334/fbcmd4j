@@ -28,6 +28,9 @@ public class Main {
 				String newToken = SettingsManager.LoginProccess(input);
 				fb.changeUser(newToken);
 				break;
+			case "2":
+				System.out.println("Hola " + fb.conn.getMe().getName());
+				break;
 			case "3":
 				fb.verNewsFeed();
 				break;
